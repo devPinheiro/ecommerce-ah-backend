@@ -1,0 +1,342 @@
+{
+        "swagger": "2.0",
+        "title": "Music API Documentation",
+        "description": "This is a simple CRUD Music API for song listings",
+        "version": "2.0.0",
+        "explore": "true",
+        "host": "localhost:3100",
+        "basePath": "/api",
+        "tags": [
+            {
+                "name": "Songs",
+                "description": "API endpoints for song listings"
+            },
+            {
+                "name": "Users",
+                "description": "API endpoints for users"
+            }
+        ],      
+       "schemes": ["http"],
+       "consumes": ["application/json"],
+       "produces": ["application/json"],
+       "paths" : {
+            "/users/login": {
+                "post": {
+                    "tags": [
+                        "User Login"
+                    ],
+                    "summary": "POST API endpoint for user login",
+                    "description": "User Login",
+                    "parameters": [
+                        {
+                            "name": "login",
+                            "description": "Login params ",
+                            "in": "body",
+                            "required": "true",
+                            "schema": {
+                                "$ref": "#definition/Login"
+                            }
+                        }
+                    ],
+                    "produces": [
+                        "application/json"
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "User logged in successfully",
+                            "schema": {
+                                "$ref": "#definition/LoginR"
+                            }
+                        }
+                    }
+                }
+            },
+           "/users/signup" :{
+             "post": {
+                "tags": [
+                    "Create new User"
+                ],
+                "summary": "POST API endpoint for creating new user",
+                "description": "Create new users",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "description": "User params to create new song",
+                        "in": "body",
+                        "required": "true",
+                        "schema": {
+                            "$ref": "#definition/User"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New user created",
+                        "schema": {
+                            "$ref": "#definition/SignupR"
+                        }
+                    }
+                }
+            
+           }
+           
+        },
+           "/songs": {
+            "post": {
+                "tags":[
+                    "Songs"
+                ],
+                "summary": "POST API endpoint for creating new songs",
+                "description": "Create new song",
+                "parameters": [
+                    {
+                        "name": "song",
+                        "description": "Song params to create new song",
+                        "in": "body",
+                        "required": "true",
+                        "schema": {
+                            "$ref": "#definition/Song"
+                        }
+                    }
+                ],
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "New song created",
+                        "schema":{
+                            "$ref" : "#definition/Song"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Songs"
+                ],
+                "summary": "GET API endpoint for getting all song",
+                "description": "Get all songs from database",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "type": "integer",
+                        "description": "Define the page index for the records",
+                        "in": "query"        
+                    },
+                    {
+                        "name": "perPage",
+                        "type": "integer",
+                        "description": "Define the limit for the record",
+                        "in": "query"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "All the songs",
+                        "schema": {
+                            "$ref": "#definition/Songs"
+                        }
+                    }
+                }
+            }
+           },
+           "/songs/{id}": {
+               "parameters": [
+                   {
+                       "name": "id",
+                       "type": "string",
+                       "in":"path",
+                       "required":"true",
+                       "description":"id of the song"
+                   },
+                    {
+                        "name": "authorization",
+                        "type": "string",
+                        "in": "header",
+                        "required": "true",
+                        "description": "Access token to authorize user"
+                    }
+               ],
+               "get":{
+                   "tags": [
+                    "Songs"
+                ],
+                "summary": "GET API endpoint for getting one song",
+                "description": "fetch one Song fom database",
+                "produces": [
+                    "application/json"
+                ], 
+                "responses": {
+                    "200": {
+                        "description": "Found new song",
+                        "schema": {
+                            "$ref": "#definition/Songs"
+                        }
+                    }
+                }
+            },
+           "put": {
+                "tags": [
+                    "Songs"
+                ],
+                "summary": "PUT API endpoint for updating a song",
+                "description": "update one Song in database",
+                "parameters": [
+                    {
+                        "name": "song",
+                        "description": "Song params to update song",
+                        "in": "body",
+                        "required": "true",
+                        "schema": {
+                            "$ref": "#definition/Song"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Song updated successfully",
+                        "schema": {
+                            "$ref": "#definition/Song"
+                        }
+                    }
+                }
+            },
+        "delete": {
+            "tags": [
+                "Songs"
+            ],
+            "summary": "DELETE API endpoint for deleting one song",
+            "description": "delete one Song fom database",
+            "produces": [
+                "application/json"
+            ],
+            "responses": {
+                "200": {
+                    "description": "Song deleted successfully",
+                    "schema": {
+                        "$ref": "#definition/Songs"
+                    }
+                }
+            }
+        }           
+       }
+    },
+       "definitions": {
+           "Login": {
+            "required": [
+               
+                "email",
+                "password"
+            ],
+            "properties": {
+               
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+           "LoginR": {
+            "properties": {
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+           "SignupR": {
+              "properties": {
+                  "success": {
+                      "type":"boolean"
+                    }
+              }
+           },
+            "User": {
+                "required": [
+                    "firstName",
+                    "lastName",
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "_id": {
+                        "type": "string"
+                    },
+                    "firstName": {
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "role": {
+                        "type": "integer"
+                    }
+                }
+            },
+           "Song": {
+               "required": ["title","url","genre"],
+               "properties": {
+                   "_id": {
+                       "type": "string"
+                   },
+                   "title":{
+                       "type": "string"
+                   },
+                   "url": {
+                    "type": "string"
+                    },
+                    "genre": {
+                        "type": "string"
+                    },
+                    "album": {
+                        "type": "string"
+                    },
+                    "rating": {
+                        "type": "string",
+                        "format": "Int32"
+                    }
+               }
+           },
+           "Songs": {
+                "properties": {
+                  
+                    "docs": {
+                        "type": "array",
+                        "items": {
+                            "#ref":"#definition/Song"
+                        },
+                        "#ref": "#definition/Song"
+                    },
+                    "total": {
+                        "type": "integer"
+                    },
+                    "pages": {
+                        "type": "integer"
+                    },
+                    "limit": {
+                        "type": "integer"
+                    },
+                    "page": {
+                        "type": "integer",
+                        "format": "Int32"
+                    }
+           }
+       }
+    
+    }
+}
