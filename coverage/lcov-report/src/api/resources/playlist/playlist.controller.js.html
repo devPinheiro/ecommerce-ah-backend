@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">61.54% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/13</span>
+        <span class='fraction'>8/13</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>1/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">61.54% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/13</span>
+        <span class='fraction'>8/13</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -82,26 +82,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -112,27 +112,27 @@
 import Playlist from './playlist.model';
 &nbsp;
 export default {
-<span class="fstat-no" title="function not covered" >    as</span>ync create(req, res) {
-<span class="cstat-no" title="statement not covered" >        try {</span>
+    async create(req, res) {
+        try {
            // Use JOI validate
-           const {value, error} = <span class="cstat-no" title="statement not covered" >playlistService.validatePlayList(req.body);</span>
-<span class="cstat-no" title="statement not covered" >           if(error){</span>
+           const {value, error} = playlistService.validatePlayList(req.body);
+           <span class="missing-if-branch" title="if path not taken" >I</span>if(error){
 <span class="cstat-no" title="statement not covered" >               return res.json(error);</span>
            }
-           const playList = <span class="cstat-no" title="statement not covered" >await Playlist.create(Object.assign({}, value, { user: req.user._id}));</span>
-<span class="cstat-no" title="statement not covered" >           return res.json(playList);</span>
+           const playList = await Playlist.create(Object.assign({}, value, { user: req.user._id}));
+           return res.json(playList);
         } catch(err){
 <span class="cstat-no" title="statement not covered" >            console.error(err);</span>
 <span class="cstat-no" title="statement not covered" >            return res.status(500).send(err); </span>
         }
     },
-<span class="fstat-no" title="function not covered" >    as</span>ync findAll(req, res) {
-<span class="cstat-no" title="statement not covered" >        try {</span>
-           const playlists = <span class="cstat-no" title="statement not covered" >await Playlist.find()</span>
+    async findAll(req, res) {
+        try {
+           const playlists = await Playlist.find()
            .populate('songs')
            .populate('user', 'firstName lastName');
 &nbsp;
-<span class="cstat-no" title="statement not covered" >           return res.json(playlists);</span>
+           return res.json(playlists);
 &nbsp;
         } catch(err) {
 <span class="cstat-no" title="statement not covered" >            console.error(err);</span>
@@ -145,7 +145,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Nov 14 2018 12:29:42 GMT+0100 (W. Central Africa Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Nov 21 2018 13:39:01 GMT+0100 (W. Central Africa Standard Time)
 </div>
 </div>
 <script src="..\..\..\..\prettify.js"></script>
