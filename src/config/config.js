@@ -6,7 +6,7 @@ const config = {
 },
  development: {
     secret: "I_AME_GERER",
-    MONGO_URI: 'mongodb://localhost/NodeAPI',
+   MONGO_URI: 'mongodb://p_sam40:samuel40@ds145093.mlab.com:45093/music-api',
     port: 3000
  }
 };

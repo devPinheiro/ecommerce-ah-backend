@@ -1,4 +1,4 @@
-process.env.NODE_ENV = 'test';
+process.env.NODE_ENV = 'development';
 
 // import { describe, it, beforeEach } from 'mocha';
 import chai from 'chai';
