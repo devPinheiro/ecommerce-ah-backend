@@ -2,7 +2,7 @@ import express from 'express';
 import logger from 'morgan';
 import swagger from 'swagger-ui-express';
 import passport from 'passport';
-import SwaggerDocument from './config/swagger.json';
+
 import { connect } from './config/db';
 import { restRouter } from './api';
 import { configJWTStrategy } from './api/middleware/password-jwt';
@@ -23,7 +23,7 @@ configJWTStrategy();
 app.use('/api', restRouter);
 
 // swagger api docs endpoint
-app.use('/api-docs', swagger.serve, swagger.setup(SwaggerDocument, {explorer: true}));
+// app.use('/api-docs', swagger.serve, swagger.setup(SwaggerDocument, {explorer: true}));
 
 app.use((req, res, next) => {
   const error = new Error('Not found');
