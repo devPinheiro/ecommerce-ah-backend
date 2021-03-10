@@ -8,7 +8,7 @@ import { restRouter } from './api';
 import { configJWTStrategy } from './api/middleware/password-jwt';
 
 const app = express();
-const PORT = process.env.PORT || 3100;
+const PORT = process.env.PORT || 3300;
 
 connect();
 app.use(logger('dev'));

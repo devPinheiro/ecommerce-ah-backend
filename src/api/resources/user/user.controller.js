@@ -1,5 +1,5 @@
 import userService from './user.service';
-import User, { STANDARD_ROLE } from './user.model';
+import User from './user.model';
 import jwt from '../../helpers/jwt';
 
 export default {
@@ -12,16 +12,16 @@ export default {
 
             const encryptedPass = userService.encryptPassword(value.password);
             
-            await User.create({
+            const result = await User.create({
                
                 firstName: value.firstName,
                 lastName: value.lastName,
                 email: value.email,
                 password: encryptedPass,
-                role: value.role || STANDARD_ROLE
+                role: value.role 
 
             });
-            return res.json({ success: true });
+            return res.status(201).json({ success: true });
         } catch (err) {
             console.error(err);
             return res.status(500).send(err);
@@ -48,7 +48,7 @@ export default {
                 return res.status(401).json({ err: "unauthorized" });
             }
             const token = jwt.issue({id:user._id}, '1d');
-            return res.json({token}); // send jwt token
+            return res.status(200).json({token}); // send jwt token
             
         } catch (err) {
             console.error(err);

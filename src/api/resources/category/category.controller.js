@@ -1,16 +1,16 @@
-import playlistService from "./playlist.service";
-import Playlist from './playlist.model';
+import categoryService from "./category.service";
+import Category from './category.model';
 
 export default {
     async create(req, res) {
         try {
            // Use JOI validate
-           const {value, error} = playlistService.validatePlayList(req.body);
+           const {value, error} = categoryService.validateCategory(req.body);
            if(error){
                return res.json(error);
            }
-           const playList = await Playlist.create(Object.assign({}, value, { user: req.user._id}));
-           return res.json(playList);
+           const ProductCategory = await Category.create(Object.assign({}, value, { user: req.user._id}));
+           return res.json(ProductCategory);
         } catch(err){
             console.error(err);
             return res.status(500).send(err); 
@@ -18,11 +18,11 @@ export default {
     },
     async findAll(req, res) {
         try {
-           const playlists = await Playlist.find()
-           .populate('songs')
+           const categories = await Product.find()
+           .populate('products')
            .populate('user', 'firstName lastName');
 
-           return res.json(playlists);
+           return res.json(categories);
 
         } catch(err) {
             console.error(err);

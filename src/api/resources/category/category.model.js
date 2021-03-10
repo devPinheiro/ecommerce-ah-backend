@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
 
 const { Schema } = mongoose;
-const playlistSchema = new Schema({
+const categorySchema = new Schema({
     name: {
         type: String,
-        required: [true, 'Playlist must have a title']
+        required: [true, 'Category must have a title']
     },
-    songs: [{
+    products: [{
        type: mongoose.Schema.Types.ObjectId,
-       ref: 'Song',
+       ref: 'Product',
        required: true
     }],
     user: {
@@ -18,4 +18,4 @@ const playlistSchema = new Schema({
     }
 });
 
-export default mongoose.model('Playlist', playlistSchema);
+export default mongoose.model('Category', categorySchema);

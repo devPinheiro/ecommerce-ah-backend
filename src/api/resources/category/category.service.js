@@ -1,9 +1,9 @@
 import Joi from 'joi';
 
 export default {
-    validatePlayList(body) {
+    validateCategory(body) {
         const schema = Joi.object().keys({
-            songs: Joi.array().items().required(),
+            products: Joi.array().items().required(),
             name: Joi.string().required()     
         });
 
