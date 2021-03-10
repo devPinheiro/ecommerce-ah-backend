@@ -6,3 +6,4 @@ coverage
 dist
 docs.md
 package-lock.json
+.env
