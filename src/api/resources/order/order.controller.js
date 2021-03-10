@@ -9,8 +9,11 @@ export default {
     async create(req, res){
         try{        
         const schema = Joi.object().keys({
-                productId: Joi.number().required(),
-                customerId: Joi.number().required()
+                productId: Joi.string().required(),
+                customerId: Joi.string().required(),
+                status: Joi.string(),
+                totalPrice: Joi.number(),
+                quantity: Joi.number()
         });
         const {value, error } = Joi.validate(req.body, schema);
         if( error && error.details ){
@@ -89,8 +92,11 @@ export default {
             // 
             const { id } = req.params;
             const schema = Joi.object().keys({
-                 productId: Joi.number().required(),
-                 customerId: Joi.number().required()
+                  productId: Joi.string().required(),
+                customerId: Joi.string().required(),
+                status: Joi.string(),
+                totalPrice: Joi.number(),
+                quantity: Joi.number()
             });
             const { value, error } = Joi.validate(req.body, schema);
             if (error && error.details) {

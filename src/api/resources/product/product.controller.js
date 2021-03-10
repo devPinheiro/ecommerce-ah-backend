@@ -100,7 +100,7 @@ export default {
             const { id } = req.params;
             const schema = Joi.object().keys({
                 name: Joi.string().required(),
-                 category: Joi.string(),
+                category: Joi.string(),
                 shortDescription: Joi.string(),
                 manufacturer: Joi.string(),
                 rating: Joi.number()
