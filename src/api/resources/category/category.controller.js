@@ -20,7 +20,7 @@ export default {
         try {
            const categories = await Product.find()
            .populate('products')
-           .populate('user', 'firstName lastName');
+           .populate('user', 'name price');
 
            return res.json(categories);
 

@@ -3,7 +3,7 @@ import Joi from 'joi';
 export default {
     validateCategory(body) {
         const schema = Joi.object().keys({
-            products: Joi.array().items().required(),
+            
             name: Joi.string().required()     
         });
 

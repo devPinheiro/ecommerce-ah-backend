@@ -7,6 +7,9 @@ const productSchema = new Schema({
          type: String,
          required: [true, 'product must have a title']
      },
+     image: {
+         type: String,
+     },
      price: {
          type: Number,
      },
