@@ -6,4 +6,7 @@ coverage
 dist
 docs.md
 package-lock.json
+yarn.lock
 .env
+.travis.yml
+.nyc_output
